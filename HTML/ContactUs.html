@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grocery Store</title>
+
+    <!-- External Style Sheet -->
+    <link rel="stylesheet" href="../CSS/mystyle.css" />
+  </head>
+  <body>
+    <!-- Header part -->
+    <header>
+      <img class="logo" src="../Assets/storeimg.png" alt="logo" />
+    </header>
+
+    <!-- Navigation part -->
+    <div class="navigation-bar">
+      <a href="FreshProducts.html"><p>Fresh Products</p></a>
+      <a href="FrozenPantry.html"><p>Frozen Pantry</p></a>
+      <a href="Breakfast.html"><p>Breakfast</p></a>
+      <a href="Cereal.html"><p>Cereal</p></a>
+      <a href="Baking.html"><p>Baking</p></a>
+      <a href="Snacks.html"><p>Snacks</p></a>
+      <a href="Candy.html"><p>Candy</p></a>
+      <a href="SpecialtyShops.html"><p>Speacialty Shops</p></a>
+      <a href="Deals.html"><p>Deals</p></a>
+      <a href="MyAccount.html"><p>My Account</p></a>
+      <a href="AboutUs.html"><p>About US</p></a>
+      <a href="ContactUs.html"><p>Contact US</p></a>
+    </div>
+
+    <div class="container">
+      <div class="side">
+        <h1 class="welcome">CONTACT US</h1>
+        <!-- <img src="../Assets/freshproducts.jpg" alt="strawberry"> -->
+        <p>
+          Feel free to reach out to our friendly and knowledgeable customer
+          support team. Whether you have questions about our products, need
+          assistance with an order, or want to provide feedback, we're here to
+          help. We value your input and are dedicated to providing prompt and
+          helpful responses to ensure your shopping experience is smooth and
+          enjoyable. Contact us through the provided channels, and we'll be
+          delighted to assist you. Your satisfaction is our priority.
+        </p>
+      </div>
+      <div class="main-content">
+        <div class="card-container">
+          <div class="formcontainer">
+            <form onsubmit="return validateForm()">
+              <h3 style="text-align: center">Contact Us</h3>
+              <div class="form-group">
+                <label for="firstName">First Name:</label>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="firstName"
+                  placeholder="First Name"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name:</label>
+                <input
+                  type="text"
+                  id="lastName"
+                  name="lastName"
+                  placeholder="Last Name"
+                  required
+                /><br />
+              </div>
+              <div class="gender">
+                <label>Gender:</label>
+                <input type="radio" id="male" name="gender" value="male" />
+                <label for="male">Male</label>
+
+                <input type="radio" id="female" name="gender" value="female" />
+                <label for="female">Female</label>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="Email"
+                  required
+                /><br />
+              </div>
+              <div class="form-group">
+                <label for="contact">Phone Number:</label>
+                <input
+                  type="text"
+                  id="contact"
+                  name="contact"
+                  placeholder="Phone Number"
+                  required
+                /><br />
+              </div>
+              <div class="form-group">
+                <label for="comments">Comments:</label>
+                <textarea
+                  id="comments"
+                  name="comments"
+                  rows="4"
+                  placeholder="Comments (at least 10 characters)"
+                  required
+                ></textarea>
+              </div>
+              <input class="button-style" type="submit" value="Submit" />
+            </form>
+            <div id="error-messages"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer part -->
+    <div class="footer">
+      <h3>Contact Us</h3>
+      <p>1234 West Meister Rd, Rodeo, TX</p>
+      <p>Email: contactus@freshmart.com</p>
+
+      <!-- Footer links -->
+      <div class="footer-links">
+        <a href="FreshProducts.html">FreshProducts</a>
+        <a href="Deals.html">Deals</a>
+        <a href="AboutUs.html">About Us</a>
+        <a href="ContactUs.html">Contact Us</a>
+      </div>
+
+      <!-- Copyright text -->
+      <em class="copyright">&copy; 2023 FreshMart. All rights reserved.</em>
+
+      <p>First Name: <strong>Muppidi Rahul</strong></p>
+      <p>Last Name: <strong>Reddy</strong></p>
+      <p>NetID: <strong>MXR210123</strong></p>
+    </div>
+
+    <script src="../JS/script.js"></script>
+  </body>
+</html>
