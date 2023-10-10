@@ -28,12 +28,12 @@
       <a href="MyAccount.html"><p>My Account</p></a>
       <a href="AboutUs.html"><p>About US</p></a>
       <a href="ContactUs.html"><p>Contact US</p></a>
-      <a href="Cart.html" id="myLink">Cart</a>
+      <a href="Cart.html">Cart</a>
     </div>
 
     <div class="container">
       <div class="side">
-        <h1 class="welcome">FRESH PRODUCTS</h1>
+        <h1 class="welcome">CART</h1>
         <p>
           Explore our selection of farm-fresh products, handpicked to bring the
           natural goodness of the countryside straight to your table. From
@@ -44,33 +44,33 @@
           well-being.
         </p>
       </div>
-      <div class="main-content" id="fresh-products-background">
-        <div class="dropdown">
-          <select id="category-dropdown" onchange="onCategoryChange()">
-            <option value="shop-all">Shop All</option>
-            <option value="all-vegetables">All Vegetables</option>
-            <option value="all-fruits">All Fruits</option>
-            <option value="pre-cut-fruits">Pre-cut Fruits</option>
-            <option value="flowers">Flowers</option>
-            <option value="salsa-and-dips">Salsa and Dips</option>
-            <option value="season-produce">Season Produce</option>
-            <option value="new-items">New Items</option>
-            <option value="rollbacks">Rollbacks</option>
-          </select>
-        </div>
-
-        <div class="card-container">
-          <!-- Product cards will be added here dynamically using JavaScript -->
-        </div>
+      <div class="main-content">
+        <table>
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Order Quantity</th>
+                <th>Price (per unit)</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody id="cart-items"></tbody>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3" style="text-align: right">Total:</td>
+                <td id="cart-total">$0.00</td>
+              </tr>
+            </tfoot>
+          </table>
+        <!-- <div class="cart-container">
+          <h2>Your Cart</h2>
+          <div class="cart-items" id="cart-items-container">
+            
+          </div>
+        </div> -->
       </div>
     </div>
-
-    <!-- <div class="cart-container">
-      <h2>Your Cart</h2>
-      <div class="cart-items"> -->
-    <!-- Cart items will be displayed here using JavaScript -->
-    <!-- </div>
-    </div> -->
 
     <div class="footer">
       <h3>Contact Us</h3>
@@ -87,7 +87,6 @@
       <p>Last Name: <strong>Reddy</strong></p>
       <p>NetID: <strong>MXR210123</strong></p>
     </div>
-    <script src="../JS/FreshProducts.js"></script>
     <script src="../JS/Cart.js"></script>
   </body>
 </html>

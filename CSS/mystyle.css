@@ -136,18 +136,18 @@ header {
 }
 
 .card-img {
-  width: 50%;
+  width: 20lh;
   height: 30vh;
 }
 
-.img-card {
+/* .img-card {
   width: 70%;
   height: 110px;
   box-shadow: 4px 4px 4px rgb(132, 138, 131);
   border-radius: 8px;
   overflow: hidden;
   margin: 10px;
-}
+} */
 
 .item-img {
   width: 90%;
@@ -374,4 +374,16 @@ img.vertical-a {
 
 .date-content {
   text-align: center;
+}
+
+#category-dropdown {
+  padding: 8px;
+  font-size: 16px;
+  /* border: 1px solid #ccc; */
+  background-color: #90caf9;
+  border-radius: 4px;
+  display: flex;
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: -5px;
 }

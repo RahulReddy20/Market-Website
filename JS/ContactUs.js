@@ -1,22 +1,3 @@
-// Q1
-function updateDateTime() {
-  const datetimeElement = document.getElementById("current-datetime");
-  const now = new Date();
-  const options = {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    timeZoneName: "short",
-  };
-  const formattedDateTime = now.toLocaleDateString(undefined, options);
-  datetimeElement.textContent = formattedDateTime;
-}
-
-setInterval(updateDateTime, 1000);
-
-updateDateTime();
-
-// Q2
 function validateForm() {
   var errorMessages = [];
   var firstName = document.querySelector('input[name="firstName"]').value;
