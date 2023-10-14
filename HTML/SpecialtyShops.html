@@ -102,6 +102,53 @@
                 <!-- <button class="button-style">Add to Cart</button> -->
               </div>
             </div>
+            <div>
+              <button id="showPopup">Special Offers</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="popup" id="specialOffersPopup">
+      <div class="popup-content">
+        <span class="close" id="closePopup">&times;</span>
+        <div class="quiz-container">
+          <h1>Special Offer Quiz</h1>
+          <div class="question" id="question1">
+            <p>Are you a student?</p>
+            <label>
+              <input type="radio" name="student" value="yes" /> Yes
+            </label>
+            <label> <input type="radio" name="student" value="no" /> No </label>
+            <button id="next1">Next</button>
+            <button id="skip1">Skip</button>
+          </div>
+          <div class="question" id="question2">
+            <p>Are you a low-income person?</p>
+            <label>
+              <input type="radio" name="income" value="yes" /> Yes
+            </label>
+            <label> <input type="radio" name="income" value="no" /> No </label>
+            <button id="next2">Next</button>
+            <button id="skip2">Skip</button>
+          </div>
+          <div class="question" id="question3">
+            <p>Have you shopped with us before?</p>
+            <label>
+              <input type="radio" name="shopped" value="yes" /> Yes
+            </label>
+            <label> <input type="radio" name="shopped" value="no" /> No </label>
+            <button id="showResult">Show Result</button>
+            <button id="skip3">Skip</button>
+          </div>
+          <div class="result">
+            <h2>Special Offer:</h2>
+            <p id="offerText"></p>
+            <h3>Qualification Reasons:</h3>
+            <p id="qualificationReasons"></p>
+            <h3>Time Spent:</h3>
+            <p id="timeSpent"></p>
           </div>
         </div>
       </div>
@@ -129,5 +176,6 @@
       <p>NetID: <strong>MXR210123</strong></p>
     </div>
     <script src="../JS/DateTime.js"></script>
+    <script src="../JS/SpecialOffer.js"></script>
   </body>
 </html>

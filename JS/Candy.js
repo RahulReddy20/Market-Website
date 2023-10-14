@@ -2,125 +2,53 @@
 //   localStorage.clear();
 // });
 
-const products = [
+const unfiltered_products = [
   {
-    id: 1,
-    name: "Broccoli",
-    category: "all-vegetables",
-    price: 1.99,
-    inventory: 8,
-  },
-  {
-    id: 2,
-    name: "Potatoes",
-    category: "all-vegetables",
-    price: 0.69,
-    inventory: 15,
-  },
-  {
-    id: 3,
-    name: "Red Chillies",
-    category: "all-vegetables",
-    price: 5.49,
-    inventory: 5,
-  },
-  {
-    id: 4,
-    name: "Banana",
-    category: "all-fruits",
-    price: 1.69,
-    inventory: 15,
-  },
-  {
-    id: 5,
-    name: "Apple",
-    category: "all-fruits",
-    price: 1.29,
-    inventory: 8,
-  },
-  {
-    id: 6,
-    name: "Pre-cut Mango",
-    category: "pre-cut-fruits",
-    price: 5.49,
-    inventory: 3,
-  },
-  {
-    id: 7,
-    name: "Fruit Salad Cup",
-    category: "pre-cut-fruits",
-    price: 6.99,
-    inventory: 5,
-  },
-  {
-    id: 8,
-    name: "Sunflowers",
-    category: "flowers",
-    price: 54.99,
-    inventory: 2,
-  },
-  {
-    id: 9,
-    name: "Roses",
-    category: "flowers",
-    price: 74.99,
-    inventory: 5,
-  },
-  {
-    id: 10,
-    name: "Hummus",
-    category: "salsa-and-dips",
-    price: 9.99,
-    inventory: 11,
-  },
-  {
-    id: 11,
-    name: "Pumpkin",
-    category: "season-produce",
-    price: 4.99,
-    inventory: 5,
-  },
-  {
-    id: 12,
-    name: "Watermelon",
-    category: "season-produce",
+    id: 701,
+    name: "M&M",
+    category: "candy",
     price: 2.99,
-    inventory: 8,
+    inventory: 14,
   },
   {
-    id: 13,
-    name: "Swiss Cheese",
-    category: "new-items",
+    id: 702,
+    name: "Ghirardelli",
+    category: "candy",
     price: 4.99,
-    inventory: 5,
-  },
-  {
-    id: 14,
-    name: "Basil",
-    category: "rollbacks",
-    price: 0.69,
-    inventory: 24,
-  },
-  {
-    id: 15,
-    name: "Pecans",
-    category: "rollbacks",
-    price: 9.99,
     inventory: 16,
+  },
+  {
+    id: 703,
+    name: "Ferrero Roacher",
+    category: "candy",
+    price: 5.99,
+    inventory: 12,
   },
   // Add more products here...
 ];
 
-function generateProductCards(category) {
+products = unfiltered_products;
+
+function generateProductCards() {
   const cardContainer = document.querySelector(".card-container");
   cardContainer.innerHTML = "";
+  //   console.log(products);
+  if (document.getElementById("search-input").value.toLowerCase()) {
+    products = unfiltered_products.filter((product) =>
+      product.name
+        .toLowerCase()
+        .includes(document.getElementById("search-input").value.toLowerCase())
+    );
+  }
 
-  products.forEach((product) => {
-    if (category === "shop-all" || product.category === category) {
+  //   console.log(products);
+  products.forEach(
+    (product) => {
+      // if (category === "shop-all" || product.category === category) {
       const card = document.createElement("div");
       card.classList.add("card");
 
-      const imageSrc = `../Assets/freshpoducts/${product.name.toLowerCase()}.jpeg`;
+      const imageSrc = `../Assets/candy/${product.name.toLowerCase()}.jpeg`;
 
       card.innerHTML = `
                         <div class="card-img">
@@ -132,6 +60,7 @@ function generateProductCards(category) {
                             <h2 class="item-heading">${product.name}</h2>
                             <p class="item-content"></p>
                             <p class="price">$${product.price.toFixed(2)}</p>
+                            <input type='number' placeholder="enter quantity" id="quantityof" value="1" min="1"/>
                             <button class="button-style" onclick="addToCart(${
                               product.id
                             })">Add to Cart</button>
@@ -140,23 +69,27 @@ function generateProductCards(category) {
 
       cardContainer.appendChild(card);
     }
-  });
+    //   }
+  );
 }
 
-function initializeProductInventory() {
-  const storedInventory = localStorage.getItem("productInventory");
+function initializeCandyProductInventory() {
+  //   console.log("initializing frozen product");
+  const storedInventory = localStorage.getItem("candyproductInventory");
 
   if (!storedInventory) {
     // Initialize the product inventory in localStorage
+    console.log("initializing candy product");
     const productData = products
       .map((product) => {
         return `${product.id},${product.name},${product.category},${product.price},${product.inventory}`;
       })
       .join("|"); // Use a delimiter to separate the product data
 
-    localStorage.setItem("productInventory", productData);
+    localStorage.setItem("candyproductInventory", productData);
   } else {
     // Update the product inventory from localStorage
+    // console.log("hi");
     const productData = storedInventory.split("|"); // Split by the delimiter
     productData.forEach((productStr) => {
       const [id, name, category, price, inventory] = productStr.split(",");
@@ -169,9 +102,13 @@ function initializeProductInventory() {
       }
     });
   }
+  //   if (localStorage.getItem("cart")) {
+  //     // Initialize the cart in localStorage
+  //     localStorage.setItem("cart", "");
+  //   }
 }
 
-initializeProductInventory();
+initializeCandyProductInventory();
 
 if (!localStorage.getItem("cart")) {
   // Initialize the cart in localStorage
@@ -181,9 +118,15 @@ if (!localStorage.getItem("cart")) {
 
 function addToCart(productId) {
   // console.log("Clicked" + productId);
-  const product = products.find((product) => product.id === productId);
+  // alert(document.getElementById('quantityof').value+" -> "+typeof(parseInt(document.getElementById('quantityof').value)));
 
-  if (product && product.inventory > 0) {
+  const product = products.find((product) => product.id === productId);
+  console.log(document.getElementById("quantityof").value);
+  if (
+    product &&
+    product.inventory > 0 &&
+    document.getElementById("quantityof").value <= product.inventory
+  ) {
     // Check if the product is already in the cart
     const cartData = localStorage.getItem("cart");
     const cartItems = cartData ? cartData.split("|") : [];
@@ -195,7 +138,9 @@ function addToCart(productId) {
       const [cartProductId, cartName, cartQuantity, cartPrice] =
         item.split(":");
       if (parseInt(cartProductId) === productId) {
-        const newQuantity = parseInt(cartQuantity) + 1;
+        const newQuantity =
+          parseInt(cartQuantity) +
+          parseInt(document.getElementById("quantityof").value);
         updatedCart.push(
           `${productId}:${cartName}:${newQuantity}:${product.price}`
         );
@@ -206,20 +151,20 @@ function addToCart(productId) {
     });
 
     if (!cartItemExists) {
-      updatedCart.push(`${productId}:${product.name}:1:${product.price}`);
+      updatedCart.push(
+        `${productId}:${product.name}:${parseInt(
+          document.getElementById("quantityof").value
+        )}:${product.price}`
+      );
     }
 
-    // Update the cart in local storage
     const updatedCartData = updatedCart.join("|");
     localStorage.setItem("cart", updatedCartData);
 
-    // Decrement the product inventory
-    product.inventory--;
-    // console.log("1");
+    product.inventory -= document.getElementById("quantityof").value;
     // document.getElementById(productId).innerHTML =
-    //   "Inventory: " + product.inventory;
-    // console.log("1");
-    // Update the product inventory in local storage
+    //   "Inventory : " + product.inventory;
+
     updateAllInventory();
   } else {
     alert("This item is out of stock.");
@@ -238,13 +183,21 @@ function updateAllInventory() {
       inventoryString += "|";
     }
   });
-  localStorage.setItem("productInventory", inventoryString);
+  localStorage.setItem("candyproductInventory", inventoryString);
 }
 
-function onCategoryChange() {
-  const categoryDropdown = document.getElementById("category-dropdown");
-  const selectedCategory = categoryDropdown.value;
-  generateProductCards(selectedCategory);
+function searchFunction() {
+  if (/^[a-zA-Z]+$/.test(document.getElementById("search-input").value)) {
+    generateProductCards("candy");
+  } else {
+    alert("No numbers allowed");
+  }
 }
+
+// function onCategoryChange() {
+//   const categoryDropdown = document.getElementById("category-dropdown");
+//   const selectedCategory = categoryDropdown.value;
+//   generateProductCards(selectedCategory);
+// }
 
 generateProductCards("shop-all");
