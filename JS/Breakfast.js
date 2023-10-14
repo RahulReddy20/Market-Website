@@ -4,109 +4,81 @@
 
 const products = [
   {
-    id: 1,
-    name: "Broccoli",
-    category: "all-vegetables",
+    id: 45,
+    name: "Cornflakes",
+    category: "the-cereal-shop",
     price: 1.99,
-    inventory: 8,
+    inventory: 14,
   },
   {
-    id: 2,
-    name: "Potatoes",
-    category: "all-vegetables",
-    price: 0.69,
-    inventory: 15,
-  },
-  {
-    id: 3,
-    name: "Red Chillies",
-    category: "all-vegetables",
-    price: 5.49,
-    inventory: 5,
-  },
-  {
-    id: 4,
-    name: "Banana",
-    category: "all-fruits",
-    price: 1.69,
-    inventory: 15,
-  },
-  {
-    id: 5,
-    name: "Apple",
-    category: "all-fruits",
-    price: 1.29,
-    inventory: 8,
-  },
-  {
-    id: 6,
-    name: "Pre-cut Mango",
-    category: "pre-cut-fruits",
-    price: 5.49,
-    inventory: 3,
-  },
-  {
-    id: 7,
-    name: "Fruit Salad Cup",
-    category: "pre-cut-fruits",
-    price: 6.99,
-    inventory: 5,
-  },
-  {
-    id: 8,
-    name: "Sunflowers",
-    category: "flowers",
-    price: 54.99,
-    inventory: 2,
-  },
-  {
-    id: 9,
-    name: "Roses",
-    category: "flowers",
-    price: 74.99,
-    inventory: 5,
-  },
-  {
-    id: 10,
-    name: "Hummus",
-    category: "salsa-and-dips",
-    price: 9.99,
-    inventory: 11,
-  },
-  {
-    id: 11,
-    name: "Pumpkin",
-    category: "season-produce",
-    price: 4.99,
-    inventory: 5,
-  },
-  {
-    id: 12,
-    name: "Watermelon",
-    category: "season-produce",
-    price: 2.99,
-    inventory: 8,
-  },
-  {
-    id: 13,
-    name: "Swiss Cheese",
-    category: "new-items",
-    price: 4.99,
-    inventory: 5,
-  },
-  {
-    id: 14,
-    name: "Basil",
-    category: "rollbacks",
-    price: 0.69,
-    inventory: 24,
-  },
-  {
-    id: 15,
-    name: "Pecans",
-    category: "rollbacks",
-    price: 9.99,
+    id: 46,
+    name: "croissant",
+    category: "breakfast-breads",
+    price: 2.49,
     inventory: 16,
+  },
+  {
+    id: 47,
+    name: "Garlic Bread",
+    category: "breakfast-breads",
+    price: 2.99,
+    inventory: 12,
+  },
+  {
+    id: 48,
+    name: "Granolabar",
+    category: "rollbacks",
+    price: 0.69,
+    inventory: 28,
+  },
+  {
+    id: 49,
+    name: "Granola Cereal",
+    category: "the-cereal-shop",
+    price: 4.99,
+    inventory: 7,
+  },
+  {
+    id: 50,
+    name: "Grits",
+    category: "oatmeal-grits",
+    price: 5.99,
+    inventory: 10,
+  },
+  {
+    id: 51,
+    name: "Honey Bunches",
+    category: "the-cereal-shop",
+    price: 6.49,
+    inventory: 16,
+  },
+  {
+    id: 52,
+    name: "Oatmeal",
+    category: "oatmeal-grits",
+    price: 5.99,
+    inventory: 13,
+  },
+  {
+    id: 53,
+    name: "Pancake Mix",
+    category: "pancakes-waffles",
+    price: 2.99,
+    inventory: 18,
+  },
+  {
+    id: 54,
+    name: "Waffles",
+    category: "pancakes-waffles",
+    price: 6.99,
+    inventory: 8,
+  },
+  {
+    id: 55,
+    name: "Wheat Bread",
+    category: "rollbacks",
+    price: 0.99,
+    inventory: 17,
   },
   // Add more products here...
 ];
@@ -120,7 +92,7 @@ function generateProductCards(category) {
       const card = document.createElement("div");
       card.classList.add("card");
 
-      const imageSrc = `../Assets/freshpoducts/${product.name.toLowerCase()}.jpeg`;
+      const imageSrc = `../Assets/breakfast_and_cereal/${product.name.toLowerCase()}.jpeg`;
 
       card.innerHTML = `
                         <div class="card-img">
@@ -143,8 +115,8 @@ function generateProductCards(category) {
   });
 }
 
-function initializeProductInventory() {
-  const storedInventory = localStorage.getItem("productInventory");
+function initializeFrozenProductInventory() {
+  const storedInventory = localStorage.getItem("breakfastproductInventory");
 
   if (!storedInventory) {
     // Initialize the product inventory in localStorage
@@ -154,7 +126,7 @@ function initializeProductInventory() {
       })
       .join("|"); // Use a delimiter to separate the product data
 
-    localStorage.setItem("productInventory", productData);
+    localStorage.setItem("breakfastproductInventory", productData);
   } else {
     // Update the product inventory from localStorage
     const productData = storedInventory.split("|"); // Split by the delimiter
@@ -173,7 +145,7 @@ function initializeProductInventory() {
   }
 }
 
-initializeProductInventory();
+initializeFrozenProductInventory();
 
 if (!localStorage.getItem("cart")) {
   // Initialize the cart in localStorage
@@ -240,7 +212,7 @@ function updateAllInventory() {
       inventoryString += "|";
     }
   });
-  localStorage.setItem("productInventory", inventoryString);
+  localStorage.setItem("breakfastproductInventory", inventoryString);
 }
 
 function onCategoryChange() {

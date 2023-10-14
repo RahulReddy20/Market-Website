@@ -1,203 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Grocery Store</title>
-    <link rel="stylesheet" href="test2.css" />
-    <style>
-      /* Add your CSS styles here */
-    </style>
+    <title>Candy Shop</title>
   </head>
   <body>
-    <header>
-      <img class="logo" src="../Assets/storeimg.png" alt="logo" />
-    </header>
+    <h1>Welcome to the Candy Shop</h1>
+    <label for="candyName">Enter the name of the candy:</label>
+    <input type="text" id="candyName" />
+    <button onclick="searchCandy()">Search</button>
+    <p id="error" style="color: red"></p>
 
-    <div class="navigation-bar">
-      <a href="FreshProducts.html"><p>Fresh Products</p></a>
-      <a href="FrozenPantry.html"><p>Frozen Pantry</p></a>
-      <a href="Breakfast.html"><p>Breakfast</p></a>
-      <a href="Cereal.html"><p>Cereal</p></a>
-      <a href="Baking.html"><p>Baking</p></a>
-      <a href="Snacks.html"><p>Snacks</p></a>
-      <a href="Candy.html"><p>Candy</p></a>
-      <a href="SpecialtyShops.html"><p>Specialty Shops</p></a>
-      <a href="Deals.html"><p>Deals</p></a>
-      <a href="MyAccount.html"><p>My Account</p></a>
-      <a href="AboutUs.html"><p>About US</p></a>
-      <a href="ContactUs.html"><p>Contact US</p></a>
+    <div id="candyInfo" style="display: none">
+      <img id="candyImage" width="100" height="100" src="" />
+      <p id="candyNameDisplay"></p>
+      <p id="candyPriceDisplay"></p>
+      <label for="candyAmount">Enter the amount:</label>
+      <input type="number" id="candyAmount" />
+      <button onclick="addToCart()">Add to Cart</button>
     </div>
 
-    <div class="container">
-      <div class="side">
-        <h1 class="welcome">FRESH PRODUCTS</h1>
-        <p>
-          Explore our selection of farm-fresh products, handpicked to bring the
-          natural goodness of the countryside straight to your table. From
-          crisp, colorful fruits and vegetables to locally sourced dairy, our
-          fresh products are carefully curated to ensure quality, flavor, and
-          nutritional value. Experience the taste of freshness with every bite,
-          knowing you're choosing the best for your family's health and
-          well-being.
-        </p>
-      </div>
-      <div class="main-content" id="fresh-products-background">
-        <div class="dropdown">
-          <select id="category-dropdown" onchange="onCategoryChange()">
-            <option value="shop-all">Shop All</option>
-            <option value="all-vegetables">All Vegetables</option>
-            <option value="all-fruits">All Fruits</option>
-            <option value="pre-cut-fruits">Pre-cut Fruits</option>
-            <option value="flowers">Flowers</option>
-            <option value="salsa-and-dips">Salsa and Dips</option>
-            <option value="season-produce">Season Produce</option>
-            <option value="new-items">New Items</option>
-            <option value="rollbacks">Rollbacks</option>
-          </select>
-        </div>
+    <p id="outOfStock" style="color: red; display: none">Out of stock!</p>
 
-        <div class="card-container">
-          <!-- Product cards will be added here dynamically using JavaScript -->
-        </div>
-      </div>
+    <div id="cart">
+      <h2>Shopping Cart</h2>
+      <ul id="cartItems"></ul>
     </div>
 
-    <!-- <div class="cart-container">
-      <h2>Your Cart</h2>
-      <div class="cart-items"> -->
-    <!-- Cart items will be displayed here using JavaScript -->
-    <!-- </div>
-    </div> -->
-
-    <div class="footer">
-      <h3>Contact Us</h3>
-      <p>1234 West Meister Rd, Rodeo, TX</p>
-      <p>Email: contactus@freshmart.com</p>
-      <div class="footer-links">
-        <a href="FreshProducts.html">FreshProducts</a>
-        <a href="Deals.html">Deals</a>
-        <a href="AboutUs.html">About Us</a>
-        <a href="ContactUs.html">Contact Us</a>
-      </div>
-      <em class="copyright">&copy; 2023 FreshMart. All rights reserved.</em>
-      <p>First Name: <strong>Muppidi Rahul</strong></p>
-      <p>Last Name: <strong>Reddy</strong></p>
-      <p>NetID: <strong>MXR210123</strong></p>
-    </div>
-
-    <script>
-      const products = [
-        {
-          name: "Broccoli",
-          category: "all-vegetables",
-          imageSrc: "../Assets/freshpoducts/broccoli.jpg",
-          price: 1.99,
-          inventory: 10,
-        },
-        {
-          name: "Potatoes",
-          category: "all-vegetables",
-          imageSrc: "../Assets/freshpoducts/potatoes.jpg",
-          price: 0.69,
-          inventory: 15,
-        },
-        {
-          name: "Red Chillies",
-          category: "salsa-and-dips",
-          imageSrc: "../Assets/freshpoducts/redchillies.jpg",
-          price: 5.49,
-          inventory: 5,
-        },
-        {
-          name: "Red Chillies",
-          category: "salsa-and-dips",
-          imageSrc: "../Assets/freshpoducts/redchillies.jpg",
-          price: 5.49,
-          inventory: 5,
-        },
-        {
-          name: "Red Chillies",
-          category: "salsa-and-dips",
-          imageSrc: "../Assets/freshpoducts/redchillies.jpg",
-          price: 5.49,
-          inventory: 5,
-        },
-        // Add more products here...
-      ];
-
-      function generateProductCards(category) {
-        const cardContainer = document.querySelector(".card-container");
-        cardContainer.innerHTML = "";
-
-        products.forEach((product) => {
-          if (category === "shop-all" || product.category === category) {
-            const card = document.createElement("div");
-            card.classList.add("card");
-
-            card.innerHTML = `
-                        <div class="card-img">
-                            <img class="item-img" src="${
-                              product.imageSrc
-                            }" alt="${product.name}">
-                        </div>
-                        <div class="card-content">
-                            <h2 class="item-heading">${product.name}</h2>
-                            <p class="item-content"></p>
-                            <p class="price">$${product.price.toFixed(
-                              2
-                            )} / lb</p>
-                            <button class="button-style" onclick="addToCart('${
-                              product.name
-                            }', ${product.price})">Add to Cart</button>
-                        </div>
-                    `;
-
-            cardContainer.appendChild(card);
-          }
-        });
-      }
-
-      const cart = [];
-      function addToCart(name, price) {
-        const product = products.find((p) => p.name === name);
-
-        if (product && product.inventory > 0) {
-          cart.push({ name, price });
-          product.inventory--;
-          displayCart();
-        } else {
-          alert("This item is out of stock.");
-        }
-      }
-
-      function displayCart() {
-        const cartItemsContainer = document.querySelector(".cart-items");
-        cartItemsContainer.innerHTML = "";
-
-        if (cart.length === 0) {
-          cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
-        } else {
-          cart.forEach((item) => {
-            const cartItem = document.createElement("div");
-            cartItem.classList.add("cart-item");
-
-            cartItem.innerHTML = `
-                        <span>${item.name}</span>
-                        <span>$${item.price.toFixed(2)}</span>
-                    `;
-
-            cartItemsContainer.appendChild(cartItem);
-          });
-        }
-      }
-      function onCategoryChange() {
-        const categoryDropdown = document.getElementById("category-dropdown");
-        const selectedCategory = categoryDropdown.value;
-        generateProductCards(selectedCategory);
-      }
-      generateProductCards("shop-all");
-      // console.log(category);
-    </script>
+    <script src="test.js"></script>
   </body>
 </html>

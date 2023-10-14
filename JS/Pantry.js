@@ -4,109 +4,116 @@
 
 const products = [
   {
-    id: 1,
-    name: "Broccoli",
-    category: "all-vegetables",
+    id: 29,
+    name: "Green Beans",
+    category: "canned-vegetables",
     price: 1.99,
-    inventory: 8,
+    inventory: 23,
   },
   {
-    id: 2,
-    name: "Potatoes",
-    category: "all-vegetables",
-    price: 0.69,
-    inventory: 15,
+    id: 30,
+    name: "Mixed Vegetables",
+    category: "canned-vegetables",
+    price: 2.49,
+    inventory: 12,
   },
   {
-    id: 3,
-    name: "Red Chillies",
-    category: "all-vegetables",
-    price: 5.49,
-    inventory: 5,
-  },
-  {
-    id: 4,
-    name: "Banana",
-    category: "all-fruits",
-    price: 1.69,
-    inventory: 15,
-  },
-  {
-    id: 5,
-    name: "Apple",
-    category: "all-fruits",
+    id: 31,
+    name: "Chicken Broth",
+    category: "canned-goods",
     price: 1.29,
-    inventory: 8,
+    inventory: 19,
   },
   {
-    id: 6,
-    name: "Pre-cut Mango",
-    category: "pre-cut-fruits",
-    price: 5.49,
-    inventory: 3,
+    id: 32,
+    name: "Baked Beans",
+    category: "canned-goods",
+    price: 2.69,
+    inventory: 18,
   },
   {
-    id: 7,
-    name: "Fruit Salad Cup",
-    category: "pre-cut-fruits",
-    price: 6.99,
-    inventory: 5,
+    id: 33,
+    name: "Tuna",
+    category: "canned-goods",
+    price: 3.29,
+    inventory: 7,
   },
   {
-    id: 8,
-    name: "Sunflowers",
-    category: "flowers",
-    price: 54.99,
-    inventory: 2,
+    id: 34,
+    name: "Tomato Sauce",
+    category: "canned-goods",
+    price: 0.99,
+    inventory: 13,
   },
   {
-    id: 9,
-    name: "Roses",
-    category: "flowers",
-    price: 74.99,
-    inventory: 5,
+    id: 35,
+    name: "Chilli sauce",
+    category: "condiments",
+    price: 2.49,
+    inventory: 16,
   },
   {
-    id: 10,
-    name: "Hummus",
-    category: "salsa-and-dips",
-    price: 9.99,
-    inventory: 11,
+    id: 36,
+    name: "Creamy Siracha",
+    category: "condiments",
+    price: 2.99,
+    inventory: 12,
   },
   {
-    id: 11,
-    name: "Pumpkin",
-    category: "season-produce",
-    price: 4.99,
-    inventory: 5,
+    id: 37,
+    name: "Tomato Ketchup",
+    category: "condiments",
+    price: 3.99,
+    inventory: 14,
   },
   {
-    id: 12,
-    name: "Watermelon",
-    category: "season-produce",
+    id: 38,
+    name: "Peanut Butter",
+    category: "peanut-butter-spread",
     price: 2.99,
     inventory: 8,
   },
   {
-    id: 13,
-    name: "Swiss Cheese",
-    category: "new-items",
-    price: 4.99,
-    inventory: 5,
+    id: 39,
+    name: "Jalapeno Spread",
+    category: "peanut-butter-spread",
+    price: 3.69,
+    inventory: 17,
   },
   {
-    id: 14,
-    name: "Basil",
-    category: "rollbacks",
-    price: 0.69,
+    id: 40,
+    name: "Pasta",
+    category: "pasta-pizza",
+    price: 2.99,
     inventory: 24,
   },
   {
-    id: 15,
-    name: "Pecans",
+    id: 41,
+    name: "Noodles",
+    category: "pasta-pizza",
+    price: 3.99,
+    inventory: 15,
+  },
+  {
+    id: 42,
+    name: "Veg Supreme Pizza",
+    category: "pasta-pizza",
+    price: 6.99,
+    inventory: 7,
+  },
+  {
+    id: 43,
+    name: "Rice",
     category: "rollbacks",
-    price: 9.99,
-    inventory: 16,
+    price: 7.99,
+    inventory: 18,
+  },
+  {
+    id: 44,
+    name: "Flour",
+    category: "rollbacks",
+    price: 4.99,
+    inventory: 8,
   },
   // Add more products here...
 ];
@@ -120,7 +127,7 @@ function generateProductCards(category) {
       const card = document.createElement("div");
       card.classList.add("card");
 
-      const imageSrc = `../Assets/freshpoducts/${product.name.toLowerCase()}.jpeg`;
+      const imageSrc = `../Assets/pantry/${product.name.toLowerCase()}.jpeg`;
 
       card.innerHTML = `
                         <div class="card-img">
@@ -143,8 +150,8 @@ function generateProductCards(category) {
   });
 }
 
-function initializeProductInventory() {
-  const storedInventory = localStorage.getItem("productInventory");
+function initializeFrozenProductInventory() {
+  const storedInventory = localStorage.getItem("pantryproductInventory");
 
   if (!storedInventory) {
     // Initialize the product inventory in localStorage
@@ -154,7 +161,7 @@ function initializeProductInventory() {
       })
       .join("|"); // Use a delimiter to separate the product data
 
-    localStorage.setItem("productInventory", productData);
+    localStorage.setItem("pantryproductInventory", productData);
   } else {
     // Update the product inventory from localStorage
     const productData = storedInventory.split("|"); // Split by the delimiter
@@ -173,7 +180,7 @@ function initializeProductInventory() {
   }
 }
 
-initializeProductInventory();
+initializeFrozenProductInventory();
 
 if (!localStorage.getItem("cart")) {
   // Initialize the cart in localStorage
@@ -240,7 +247,7 @@ function updateAllInventory() {
       inventoryString += "|";
     }
   });
-  localStorage.setItem("productInventory", inventoryString);
+  localStorage.setItem("pantryproductInventory", inventoryString);
 }
 
 function onCategoryChange() {

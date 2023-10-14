@@ -4,109 +4,95 @@
 
 const products = [
   {
-    id: 1,
-    name: "Broccoli",
-    category: "all-vegetables",
-    price: 1.99,
-    inventory: 8,
+    id: 16,
+    name: "Chicken Nuggets",
+    category: "frozen-snacks",
+    price: 6.49,
+    inventory: 13,
   },
   {
-    id: 2,
-    name: "Potatoes",
-    category: "all-vegetables",
-    price: 0.69,
+    id: 17,
+    name: "Pepperoni Pizza",
+    category: "frozen-pizza",
+    price: 8.49,
     inventory: 15,
   },
   {
-    id: 3,
-    name: "Red Chillies",
-    category: "all-vegetables",
-    price: 5.49,
-    inventory: 5,
+    id: 18,
+    name: "Cheese Pizza",
+    category: "frozen-pizza",
+    price: 7.99,
+    inventory: 9,
   },
   {
-    id: 4,
-    name: "Banana",
-    category: "all-fruits",
+    id: 19,
+    name: "Chicken",
+    category: "frozen-meat",
     price: 1.69,
-    inventory: 15,
+    inventory: 18,
   },
   {
-    id: 5,
-    name: "Apple",
-    category: "all-fruits",
-    price: 1.29,
+    id: 20,
+    name: "Egg and Cheese",
+    category: "frozen-breakfast",
+    price: 4.29,
     inventory: 8,
   },
   {
-    id: 6,
-    name: "Pre-cut Mango",
-    category: "pre-cut-fruits",
-    price: 5.49,
-    inventory: 3,
+    id: 21,
+    name: "French Fries",
+    category: "frozen-snacks",
+    price: 3.49,
+    inventory: 13,
   },
   {
-    id: 7,
-    name: "Fruit Salad Cup",
-    category: "pre-cut-fruits",
-    price: 6.99,
-    inventory: 5,
+    id: 22,
+    name: "Frozen Yogurt",
+    category: "frozen-dessert",
+    price: 4.49,
+    inventory: 6,
   },
   {
-    id: 8,
-    name: "Sunflowers",
-    category: "flowers",
-    price: 54.99,
-    inventory: 2,
-  },
-  {
-    id: 9,
-    name: "Roses",
-    category: "flowers",
-    price: 74.99,
-    inventory: 5,
-  },
-  {
-    id: 10,
-    name: "Hummus",
-    category: "salsa-and-dips",
-    price: 9.99,
-    inventory: 11,
-  },
-  {
-    id: 11,
-    name: "Pumpkin",
-    category: "season-produce",
-    price: 4.99,
-    inventory: 5,
-  },
-  {
-    id: 12,
-    name: "Watermelon",
-    category: "season-produce",
+    id: 23,
+    name: "Icecream",
+    category: "frozen-dessert",
     price: 2.99,
-    inventory: 8,
+    inventory: 12,
   },
   {
-    id: 13,
-    name: "Swiss Cheese",
-    category: "new-items",
-    price: 4.99,
+    id: 24,
+    name: "Lasagna",
+    category: "frozen-meals",
+    price: 10.99,
+    inventory: 4,
+  },
+  {
+    id: 25,
+    name: "Mixed Vegetables",
+    category: "rollbacks",
+    price: 2.29,
     inventory: 5,
   },
   {
-    id: 14,
-    name: "Basil",
-    category: "rollbacks",
-    price: 0.69,
-    inventory: 24,
+    id: 26,
+    name: "Pancakes",
+    category: "frozen-breakfast",
+    price: 3.69,
+    inventory: 7,
   },
   {
-    id: 15,
-    name: "Pecans",
-    category: "rollbacks",
-    price: 9.99,
-    inventory: 16,
+    id: 27,
+    name: "Spaghetti",
+    category: "frozen-meals",
+    price: 2.99,
+    inventory: 4,
+  },
+  {
+    id: 28,
+    name: "Waffles",
+    category: "frozen-breakfast",
+    price: 3.99,
+    inventory: 15,
   },
   // Add more products here...
 ];
@@ -120,7 +106,7 @@ function generateProductCards(category) {
       const card = document.createElement("div");
       card.classList.add("card");
 
-      const imageSrc = `../Assets/freshpoducts/${product.name.toLowerCase()}.jpeg`;
+      const imageSrc = `../Assets/frozen/${product.name.toLowerCase()}.jpeg`;
 
       card.innerHTML = `
                         <div class="card-img">
@@ -143,8 +129,8 @@ function generateProductCards(category) {
   });
 }
 
-function initializeProductInventory() {
-  const storedInventory = localStorage.getItem("productInventory");
+function initializeFrozenProductInventory() {
+  const storedInventory = localStorage.getItem("frozenproductInventory");
 
   if (!storedInventory) {
     // Initialize the product inventory in localStorage
@@ -154,7 +140,7 @@ function initializeProductInventory() {
       })
       .join("|"); // Use a delimiter to separate the product data
 
-    localStorage.setItem("productInventory", productData);
+    localStorage.setItem("frozenproductInventory", productData);
   } else {
     // Update the product inventory from localStorage
     const productData = storedInventory.split("|"); // Split by the delimiter
@@ -173,7 +159,7 @@ function initializeProductInventory() {
   }
 }
 
-initializeProductInventory();
+initializeFrozenProductInventory();
 
 if (!localStorage.getItem("cart")) {
   // Initialize the cart in localStorage
@@ -240,7 +226,7 @@ function updateAllInventory() {
       inventoryString += "|";
     }
   });
-  localStorage.setItem("productInventory", inventoryString);
+  localStorage.setItem("frozenproductInventory", inventoryString);
 }
 
 function onCategoryChange() {
